@@ -16,7 +16,6 @@ import {
 import { CirclePlusIcon, PencilIcon } from "lucide-react";
 // import { ScrollArea } from "@/components/ui/scroll-area";
 import ClientTable from "@/components/client-table";
-import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
