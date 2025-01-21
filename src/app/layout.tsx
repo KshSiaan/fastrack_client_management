@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="overflow-x-hidden font-karla">
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

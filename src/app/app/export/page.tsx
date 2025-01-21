@@ -6,7 +6,20 @@ import { FileSpreadsheetIcon, FileText } from "lucide-react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { stringify } from "csv-stringify/sync";
-
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 interface Client {
   serialNo: number;
   clientName: string;
@@ -59,7 +72,10 @@ export default function Page() {
 
       // Set smaller font size for the title
       doc.setFontSize(14);
-      doc.text(`Client List ${new Date().getFullYear()}`, 14, 15);
+      const currentMonthYear = `${
+        monthNames[new Date().getMonth()]
+      } ${new Date().getFullYear()}`;
+      doc.text(`Client List - ${currentMonthYear}`, 14, 15);
 
       const tableColumn = [
         "S.No",

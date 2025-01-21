@@ -18,10 +18,12 @@ import { CirclePlusIcon, PencilIcon } from "lucide-react";
 import ClientTable from "@/components/client-table";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
 export default function Page() {
   const [arrangement, setArrangement] = useState<boolean>(true);
   const navig = useRouter();
+  const [cookies] = useCookies(["token"]);
 
   return (
     <>
@@ -46,7 +48,14 @@ export default function Page() {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex justify-end space-x-4">
+          <div
+            className={
+              cookies.token != "admineng"
+                ? "hidden justify-end space-x-4"
+                : "flex justify-end space-x-4"
+            }
+            suppressHydrationWarning
+          >
             <TooltipProvider>
               <Tooltip delayDuration={300}>
                 <TooltipTrigger asChild>

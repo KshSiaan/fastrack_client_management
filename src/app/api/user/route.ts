@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     // Respond with success message (token and hashing can be added later)
     return NextResponse.json(
-      { message: "User authenticated successfully" },
+      { message: "User authenticated successfully", username: user.username },
       { status: 200 }
     );
   } catch (error) {
