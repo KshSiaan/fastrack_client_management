@@ -57,19 +57,21 @@ export default function Page() {
     try {
       const doc = new jsPDF();
 
-      doc.setFontSize(18);
-      doc.text("Client List", 14, 22);
+      // Set smaller font size for the title
+      doc.setFontSize(14);
+      doc.text(`Client List ${new Date().getFullYear()}`, 14, 15);
 
       const tableColumn = [
-        "Serial No",
+        "S.No",
         "Client Name",
-        "Contact Person",
+        "Contact",
         "Designation",
         "Email",
-        "Cell Number",
+        "Cell",
         "Address",
         "Date",
       ];
+
       const tableRows = data.map((client) => [
         client.serialNo,
         client.clientName,
@@ -84,7 +86,22 @@ export default function Page() {
       doc.autoTable({
         head: [tableColumn],
         body: tableRows,
-        startY: 30,
+        startY: 20,
+        styles: { fontSize: 7 }, // Reduced font size from 8 to 7
+        columnStyles: {
+          0: { cellWidth: 10 }, // S.No (reduced from 10)
+          1: { cellWidth: 25 }, // Client Name (reduced from 30)
+          2: { cellWidth: 22 }, // Contact (slightly reduced)
+          3: { cellWidth: 22 }, // Designation (slightly reduced)
+          4: { cellWidth: 32 }, // Email (slightly reduced)
+          5: { cellWidth: 18 }, // Cell (slightly reduced)
+          6: { cellWidth: "auto" }, // Address (will take remaining space)
+          7: { cellWidth: 18 }, // Date (slightly reduced)
+        },
+        headStyles: {
+          fillColor: [66, 66, 66],
+          fontSize: 8, // Slightly larger font for header
+        },
       });
 
       doc.save("client-list.pdf");
